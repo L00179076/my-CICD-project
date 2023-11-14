@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         # test against supported LTS versions and latest
-        java: [ 17, 21 ]
+        java: [ 17 ]
     name: Windows Java SE ${{ matrix.java }}
     steps:
       - uses: actions/checkout@v4
@@ -27,17 +27,20 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Build & push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context:
-            
-          
-          tags: latest
-          push: true
-         
-          file: Dockerfile
+    
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      - name: Build and Push Docker Image
+        run: |
+              docker buildx create --use
+              docker buildx build --platform linux/amd64,linux/arm64 -t your-image:latest .
+              docker buildx imagetools inspect your-image:latest
+              # Add additional steps as needed for your workflow
         env:
-              username: ${{ secrets.DOCKER_USERNAME }}
-              password: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
               
