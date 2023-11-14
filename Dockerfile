@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim-buster
+FROM openjdk:17
 EXPOSE 8081
-ADD target/springboot-docker.jar springboot-docker.jar
-ENTRYPOINT [ "java","-jar","/springboot-docker.jar"]
+ADD target/devops.jar devops.jar
+ENTRYPOINT [ "java","-jar","/devops.jar"]
