@@ -50,6 +50,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           branch: gh-pages
-          folder: D:\cicd-java\github-cicd-actions\src\main\java\com\javaproject\githubcicdactions
+          folder: D:\cicd-java\github-cicd-actions\src\main\java
           
           
