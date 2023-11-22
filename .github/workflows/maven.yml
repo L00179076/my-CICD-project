@@ -32,7 +32,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: riya652/devops
-          tags: docker-image1
+          tags: image1
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
